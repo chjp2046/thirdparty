@@ -17,5 +17,6 @@ cc_library(
 		'-Wstrict-prototypes',
 		'-DLZ4_VERSION=\"r124\"'
 	],
+    warning = 'no'
 	# -O3 -std=c99 -Wall -Wextra -Wundef -Wshadow -Wcast-align -Wstrict-prototypes -DLZ4_VERSION=\"r124\"
 )
