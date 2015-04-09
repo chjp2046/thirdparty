@@ -1,0 +1,1 @@
+* svdxu: 当 memcached_io_read 返回 MEMCACHED_IN_PROGRESS，只重试2次，原来为不断重试

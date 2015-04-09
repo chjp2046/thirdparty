@@ -1,0 +1,9 @@
+<version>
+    3.2.1
+</version>
+<headers>
+    lib
+</headers>
+<libs>
+    .
+</libs>

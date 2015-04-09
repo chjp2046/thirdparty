@@ -1,0 +1,23 @@
+cc_library(
+    name = "hashkit",
+    srcs = [
+        "behavior.cc",
+        "ketama.cc",
+        "function.cc",
+        "strerror.cc",
+        "hsieh.cc",
+        "md5.cc",
+        "str_algorithm.cc",
+        "one_at_a_time.cc",
+        "murmur.cc",
+        "jenkins.cc",
+        "fnv_64.cc",
+        "algorithm.cc",
+        "crc32.cc",
+        "hashkit.cc",
+        "nohsieh.cc",
+        "fnv_32.cc",
+        "digest.cc",
+        "has.cc",
+    ],
+)

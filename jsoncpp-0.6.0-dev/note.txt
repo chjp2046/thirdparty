@@ -1,0 +1,13 @@
+jsoncpp中字符串中的汉字只能用UTF-8编码或者用\uxxxx表示
+
+UTF-8编码兼容ASCII码，json的保留字符（比如，'\' 0x5c）是不可能
+出现在汉字经UTF-8编码后的字节流中的。
+但是，GBK编码是不兼容ASCII码的，json的保留字符是可能出现在汉字
+经GBK编码后的字节流中的，这样就会导致jsoncpp解析出错。
+
+如果需要使用GBK等不兼容ASCII编码的中文编码，必须要对中文编码后
+的字节流中的json保留字符进行转义。
+例如C++中可以使用jsoncpp从json value转换成json字符串，jsoncpp
+会自动进行上述转换。如果是手工拼接的json字符串，必须要对中文编
+码后的字节流中的json保留字符进行转义，否则json认为是非法json字符串。
+

@@ -1,0 +1,28 @@
+Add a full googletest suite
+
+Add a Tutorial: for SQLite newbies
+Create Github Wiki pages with the README.md and FAQ.txt: Installation, Examples, Tutorial, How to contribute
+
+Publish a versionned ZIP file in Google Project Mirror
+
+Publish the Doxygen Documentation in the Github Pages (gh-pages branch)
+
+Missing features in v0.9.9:
+- getColumnByName() (issue #23) ? std::map getRow() ?
+- bind a SQLITE_STATIC value (string/blob)
+- bind a dynamic value with zerocopy (unlike SQLITE_TRANSIENT) with custom deleter
+
+Missing documentation in v0.9.9:
+- explain the noncopyable property for RAII design
+- comment on returning error code instead of exception that shall not be thrown when exepected (!?)
+
+Advanced missing features:
+- backup support to/from file/:memory:
+- Function ?
+- Agregate ?
+- support for different transaction mode ? NO: too specific
+- operator<< binding ? NO: redundant with bind()
+- ATTACH Database ? NO: can already be done by "ATTACH" Statement
+- Add optional usage of experimental sqlite3_trace() function to enable statistics 
+
+Post an article to CodeProject: Is there a license issue ?

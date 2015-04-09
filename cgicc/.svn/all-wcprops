@@ -1,0 +1,179 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/repos/weiyi/!svn/ver/1583/platform/poppy/thirdparty/cgicc
+END
+XMLPI.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/repos/weiyi/!svn/ver/1584/platform/poppy/thirdparty/cgicc/XMLPI.h
+END
+HTMLDoctype.h
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/repos/weiyi/!svn/ver/1584/platform/poppy/thirdparty/cgicc/HTMLDoctype.h
+END
+HTTPStatusHeader.h
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/repos/weiyi/!svn/ver/1584/platform/poppy/thirdparty/cgicc/HTTPStatusHeader.h
+END
+MStreamable.h
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/repos/weiyi/!svn/ver/1584/platform/poppy/thirdparty/cgicc/MStreamable.h
+END
+FormFile.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/repos/weiyi/!svn/ver/1584/platform/poppy/thirdparty/cgicc/FormFile.h
+END
+CgiDefs.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/repos/weiyi/!svn/ver/1584/platform/poppy/thirdparty/cgicc/CgiDefs.h
+END
+HTTPXHTMLHeader.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/repos/weiyi/!svn/ver/1584/platform/poppy/thirdparty/cgicc/HTTPXHTMLHeader.h
+END
+XMLDeclaration.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/repos/weiyi/!svn/ver/1584/platform/poppy/thirdparty/cgicc/XMLDeclaration.h
+END
+HTTPResponseHeader.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/repos/weiyi/!svn/ver/1584/platform/poppy/thirdparty/cgicc/HTTPResponseHeader.h
+END
+Cgicc.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/repos/weiyi/!svn/ver/1584/platform/poppy/thirdparty/cgicc/Cgicc.h
+END
+BUILD
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/repos/weiyi/!svn/ver/1584/platform/poppy/thirdparty/cgicc/BUILD
+END
+HTTPCookie.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/repos/weiyi/!svn/ver/1584/platform/poppy/thirdparty/cgicc/HTTPCookie.h
+END
+HTMLElementList.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/repos/weiyi/!svn/ver/1584/platform/poppy/thirdparty/cgicc/HTMLElementList.h
+END
+HTTPRedirectHeader.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/repos/weiyi/!svn/ver/1584/platform/poppy/thirdparty/cgicc/HTTPRedirectHeader.h
+END
+HTMLAtomicElement.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/repos/weiyi/!svn/ver/1584/platform/poppy/thirdparty/cgicc/HTMLAtomicElement.h
+END
+HTTPPlainHeader.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/repos/weiyi/!svn/ver/1584/platform/poppy/thirdparty/cgicc/HTTPPlainHeader.h
+END
+HTTPHTMLHeader.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/repos/weiyi/!svn/ver/1584/platform/poppy/thirdparty/cgicc/HTTPHTMLHeader.h
+END
+HTMLElement.h
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/repos/weiyi/!svn/ver/1584/platform/poppy/thirdparty/cgicc/HTMLElement.h
+END
+HTMLBooleanElement.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/repos/weiyi/!svn/ver/1584/platform/poppy/thirdparty/cgicc/HTMLBooleanElement.h
+END
+HTMLClasses.h
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/repos/weiyi/!svn/ver/1584/platform/poppy/thirdparty/cgicc/HTMLClasses.h
+END
+CgiInput.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/repos/weiyi/!svn/ver/1584/platform/poppy/thirdparty/cgicc/CgiInput.h
+END
+CgiUtils.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/repos/weiyi/!svn/ver/1584/platform/poppy/thirdparty/cgicc/CgiUtils.h
+END
+HTTPContentHeader.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/repos/weiyi/!svn/ver/1584/platform/poppy/thirdparty/cgicc/HTTPContentHeader.h
+END
+HTMLAttributeList.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/repos/weiyi/!svn/ver/1584/platform/poppy/thirdparty/cgicc/HTMLAttributeList.h
+END
+XHTMLDoctype.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/repos/weiyi/!svn/ver/1584/platform/poppy/thirdparty/cgicc/XHTMLDoctype.h
+END
+FormEntry.h
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/repos/weiyi/!svn/ver/1584/platform/poppy/thirdparty/cgicc/FormEntry.h
+END
+CgiEnvironment.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/repos/weiyi/!svn/ver/1584/platform/poppy/thirdparty/cgicc/CgiEnvironment.h
+END
+HTMLAttribute.h
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/repos/weiyi/!svn/ver/1584/platform/poppy/thirdparty/cgicc/HTMLAttribute.h
+END
+HTTPHeader.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/repos/weiyi/!svn/ver/1584/platform/poppy/thirdparty/cgicc/HTTPHeader.h
+END

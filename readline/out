@@ -1,0 +1,103 @@
+/* _rl_last_c_pos is an absolute cursor position in multibyte locales and a
+/* NOTE: _rl_last_c_pos is used as a buffer index when not in a locale
+int _rl_last_c_pos = 0;
+			_rl_last_c_pos != o_cpos && \
+			_rl_last_c_pos > wrap_offset && \
+	      o_cpos = _rl_last_c_pos;
+	      /* update_line potentially changes _rl_last_c_pos, but doesn't
+		 take invisible characters into account, since _rl_last_c_pos
+		 update_line adjusts _rl_last_c_pos itself (so it can pass
+		 _rl_last_c_pos is correct (an absolute cursor position) each
+		_rl_last_c_pos -= prompt_invis_chars_first_line;	/* XXX - was wrap_offset */
+			_rl_last_c_pos != o_cpos &&
+			_rl_last_c_pos > (prompt_last_invisible - _rl_screenwidth - prompt_invis_chars_first_line))
+		_rl_last_c_pos -= (wrap_offset-prompt_invis_chars_first_line);
+		  inv_botlin == 0 && _rl_last_c_pos == out &&
+		  (_rl_last_c_pos < visible_first_line_len))
+		    nleft = _rl_screenwidth - _rl_last_c_pos;
+		    nleft = _rl_screenwidth + wrap_offset - _rl_last_c_pos;
+		       _rl_last_c_pos == out &&
+		_rl_last_c_pos += wrap_offset;
+	  if (cursor_linenum == 0 && wrap_offset > 0 && _rl_last_c_pos > 0 &&
+	      _rl_last_c_pos <= PROMPT_ENDING_INDEX && local_prompt)
+	      _rl_last_c_pos < PROMPT_ENDING_INDEX && local_prompt)
+		_rl_last_c_pos = _rl_col_width (local_prompt, 0, nleft, 1) - wrap_offset + modmark;
+		_rl_last_c_pos = nleft + modmark;
+	     multibyte locale, however, _rl_last_c_pos is an absolute cursor
+	  if (wrap_offset && cursor_linenum == 0 && nleft < _rl_last_c_pos)
+	      if (tx >= 0 && _rl_last_c_pos > tx)
+	          _rl_backspace (_rl_last_c_pos - tx);	/* XXX */
+	          _rl_last_c_pos = tx;
+	     _rl_last_c_pos as an absolute cursor position, but moving to a
+	  else if (nleft != _rl_last_c_pos)
+	  o_cpos = _rl_last_c_pos;
+	    _rl_last_c_pos -= prompt_invis_chars_first_line;	/* XXX - was wrap_offset */
+	  t = _rl_last_c_pos - M_OFFSET (lmargin, wrap_offset);
+	      (_rl_last_c_pos == out) &&
+    temp = _rl_last_c_pos;
+    temp = _rl_last_c_pos - WRAP_OFFSET (_rl_last_v_pos, visible_wrap_offset);
+	      _rl_last_c_pos = tempwidth;
+	      _rl_last_c_pos = 1;
+	  _rl_last_c_pos = 1;
+	_rl_last_c_pos += visible_wrap_offset;
+      _rl_term_cr && lendiff > prompt_visible_length && _rl_last_c_pos > 0 &&
+      od >= lendiff && _rl_last_c_pos < PROMPT_ENDING_INDEX)
+	  _rl_last_c_pos = _rl_col_width (local_prompt, 0, lendiff, 1) - wrap_offset + modmark;
+	_rl_last_c_pos = lendiff + modmark;
+  o_cpos = _rl_last_c_pos;
+  /* When this function returns, _rl_last_c_pos is correct, and an absolute
+      (_rl_last_c_pos > 0 || o_cpos > 0) &&
+      _rl_last_c_pos == prompt_physical_chars)
+	  _rl_last_c_pos += _rl_col_width (nfd, 0, temp, 1);
+	     adjust _rl_last_c_pos to account for wrap_offset and set
+	      _rl_last_c_pos -= wrap_offset;
+	  /* If lendiff > prompt_visible_length and _rl_last_c_pos == 0 and
+			_rl_last_c_pos == 0 &&
+	      _rl_last_c_pos += col_lendiff;
+	  else if ((MB_CUR_MAX > 1 && rl_byte_oriented == 0) && _rl_last_c_pos == 0 && wrap_offset && (nfd-new) <= prompt_last_invisible && col_lendiff < prompt_visible_length && visible_wrap_offset >= current_invis_chars)
+	      _rl_last_c_pos += col_lendiff;
+	      _rl_last_c_pos += col_lendiff;
+	      _rl_last_c_pos += col_temp;
+		 prompt, adjust _rl_last_c_pos to account for wrap_offset
+		  _rl_last_c_pos -= wrap_offset;
+	      _rl_last_c_pos += twidth;
+		 prompt, adjust _rl_last_c_pos to account for wrap_offset
+		  _rl_last_c_pos -= wrap_offset;
+	  _rl_last_c_pos += col_temp;
+	     characters) we need to adjust _rl_last_c_pos, since it represents
+	      _rl_last_c_pos -= wrap_offset - prompt_invis_chars_first_line;
+	  if (_rl_horizontal_scroll_mode && _rl_last_c_pos == 0 &&
+		 characters in the prompt, we need to adjust _rl_last_c_pos
+		  _rl_last_c_pos += _rl_col_width (nfd, 0, temp, 1);
+		      _rl_last_c_pos -= wrap_offset;
+		_rl_last_c_pos += temp;
+		 characters in the prompt, we need to adjust _rl_last_c_pos
+	      _rl_last_c_pos += col_temp;		/* XXX */
+		      _rl_last_c_pos -= wrap_offset;
+	     adjust col_lendiff based on the difference between _rl_last_c_pos
+	  if (col_lendiff && ((MB_CUR_MAX == 1 || rl_byte_oriented) || (_rl_last_c_pos < _rl_screenwidth)))
+  _rl_last_c_pos = _rl_last_v_pos = 0;
+    _rl_last_c_pos = _rl_col_width (prompt_last_line, 0, l, 1);	/* XXX */
+    _rl_last_c_pos = l;
+/* Move the cursor from _rl_last_c_pos to NEW, which are buffer indices.
+   (Well, when we don't have multibyte characters, _rl_last_c_pos is a
+  cpos = _rl_last_c_pos;
+     a multibyte string, but _rl_last_c_pos is the display position.  In
+	  /* Since this will be assigned to _rl_last_c_pos at the end (more
+	     precisely, _rl_last_c_pos == dpos when this function returns),
+    i = _rl_last_c_pos;
+  i = _rl_last_c_pos - woff;
+  if (dpos == 0 || CR_FASTER (dpos, _rl_last_c_pos) ||
+      cpos = _rl_last_c_pos = 0;
+  /* NEW points to the buffer point, but _rl_last_c_pos is the display point.
+     of the string, which means that if NEW == _rl_last_c_pos, then NEW's
+     display point is less than _rl_last_c_pos. */
+  _rl_last_c_pos = dpos;
+      _rl_last_c_pos = 0;
+    visible_line[--_rl_last_c_pos] = '\0';
+  _rl_last_c_pos += count;
+  if (_rl_vis_botlin && _rl_last_c_pos == 0 &&
+      _rl_last_c_pos = 0;
+      _rl_last_c_pos = 0;
+    nleft = _rl_last_c_pos - _rl_screenwidth - rl_visible_prompt_length;
+    nleft = _rl_last_c_pos - _rl_screenwidth;

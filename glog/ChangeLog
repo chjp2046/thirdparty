@@ -1,0 +1,15 @@
+* wookin: 日志文件名的 .log 改到最后，原来在中间。
+* wookin: 切分多个日志文件。
+* wookin: 日志输出到终端时，增加了颜色。
+* wookin: 增加 bool flag log_symlink，是否生成符号链接。
+* wookin: 是否在日志中文件名中出现pid和时间
+* cyluo: add error message hooker for user
+* phongchen: 支持 bool 类型参数 --strip_source_path，log 里输出完整的原文件路径，默认为
+false
+* phongchen: 没有设置 log_dir 时，优先使用当前目录，原来输出到 /tmp，很容易造成磁盘满告警。
+* phongchen: RAW_LOG(FATAL) 在开启 Strip 时，调用 exit，如果本身是在 exit中，就会造成 exit
+  递归调用，应该跟不 strip 一样调 abort()
+* phongchen: 避免在 FlushLogFilesUnsafe 里分配内存，否则在信号处理或者 tcmalloc
+abort 时会死锁。
+* phongchen: vmodule 里的模式包含斜杠时，匹配路径。方便按目录设置 vlog 级别。
+

@@ -1,0 +1,42 @@
+make  all-recursive
+make[1]: Entering directory `/data/home/user00/workspace/thirdparty/qrencode-3.4.4'
+Making all in .
+make[2]: Entering directory `/data/home/user00/workspace/thirdparty/qrencode-3.4.4'
+/bin/sh ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I.     -Wall -I/home/jabinchen/workspace/poppy  -I/home/jabinchen/workspace/poppy/thirdparty/zlib-1.2.8 -MT qrencode.lo -MD -MP -MF .deps/qrencode.Tpo -c -o qrencode.lo qrencode.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -Wall -I/home/jabinchen/workspace/poppy -I/home/jabinchen/workspace/poppy/thirdparty/zlib-1.2.8 -MT qrencode.lo -MD -MP -MF .deps/qrencode.Tpo -c qrencode.c  -fPIC -DPIC -o .libs/qrencode.o
+mv -f .deps/qrencode.Tpo .deps/qrencode.Plo
+/bin/sh ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I.     -Wall -I/home/jabinchen/workspace/poppy  -I/home/jabinchen/workspace/poppy/thirdparty/zlib-1.2.8 -MT qrinput.lo -MD -MP -MF .deps/qrinput.Tpo -c -o qrinput.lo qrinput.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -Wall -I/home/jabinchen/workspace/poppy -I/home/jabinchen/workspace/poppy/thirdparty/zlib-1.2.8 -MT qrinput.lo -MD -MP -MF .deps/qrinput.Tpo -c qrinput.c  -fPIC -DPIC -o .libs/qrinput.o
+mv -f .deps/qrinput.Tpo .deps/qrinput.Plo
+/bin/sh ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I.     -Wall -I/home/jabinchen/workspace/poppy  -I/home/jabinchen/workspace/poppy/thirdparty/zlib-1.2.8 -MT bitstream.lo -MD -MP -MF .deps/bitstream.Tpo -c -o bitstream.lo bitstream.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -Wall -I/home/jabinchen/workspace/poppy -I/home/jabinchen/workspace/poppy/thirdparty/zlib-1.2.8 -MT bitstream.lo -MD -MP -MF .deps/bitstream.Tpo -c bitstream.c  -fPIC -DPIC -o .libs/bitstream.o
+mv -f .deps/bitstream.Tpo .deps/bitstream.Plo
+/bin/sh ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I.     -Wall -I/home/jabinchen/workspace/poppy  -I/home/jabinchen/workspace/poppy/thirdparty/zlib-1.2.8 -MT qrspec.lo -MD -MP -MF .deps/qrspec.Tpo -c -o qrspec.lo qrspec.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -Wall -I/home/jabinchen/workspace/poppy -I/home/jabinchen/workspace/poppy/thirdparty/zlib-1.2.8 -MT qrspec.lo -MD -MP -MF .deps/qrspec.Tpo -c qrspec.c  -fPIC -DPIC -o .libs/qrspec.o
+mv -f .deps/qrspec.Tpo .deps/qrspec.Plo
+/bin/sh ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I.     -Wall -I/home/jabinchen/workspace/poppy  -I/home/jabinchen/workspace/poppy/thirdparty/zlib-1.2.8 -MT rscode.lo -MD -MP -MF .deps/rscode.Tpo -c -o rscode.lo rscode.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -Wall -I/home/jabinchen/workspace/poppy -I/home/jabinchen/workspace/poppy/thirdparty/zlib-1.2.8 -MT rscode.lo -MD -MP -MF .deps/rscode.Tpo -c rscode.c  -fPIC -DPIC -o .libs/rscode.o
+mv -f .deps/rscode.Tpo .deps/rscode.Plo
+/bin/sh ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I.     -Wall -I/home/jabinchen/workspace/poppy  -I/home/jabinchen/workspace/poppy/thirdparty/zlib-1.2.8 -MT split.lo -MD -MP -MF .deps/split.Tpo -c -o split.lo split.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -Wall -I/home/jabinchen/workspace/poppy -I/home/jabinchen/workspace/poppy/thirdparty/zlib-1.2.8 -MT split.lo -MD -MP -MF .deps/split.Tpo -c split.c  -fPIC -DPIC -o .libs/split.o
+mv -f .deps/split.Tpo .deps/split.Plo
+/bin/sh ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I.     -Wall -I/home/jabinchen/workspace/poppy  -I/home/jabinchen/workspace/poppy/thirdparty/zlib-1.2.8 -MT mask.lo -MD -MP -MF .deps/mask.Tpo -c -o mask.lo mask.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -Wall -I/home/jabinchen/workspace/poppy -I/home/jabinchen/workspace/poppy/thirdparty/zlib-1.2.8 -MT mask.lo -MD -MP -MF .deps/mask.Tpo -c mask.c  -fPIC -DPIC -o .libs/mask.o
+mv -f .deps/mask.Tpo .deps/mask.Plo
+/bin/sh ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I.     -Wall -I/home/jabinchen/workspace/poppy  -I/home/jabinchen/workspace/poppy/thirdparty/zlib-1.2.8 -MT mqrspec.lo -MD -MP -MF .deps/mqrspec.Tpo -c -o mqrspec.lo mqrspec.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -Wall -I/home/jabinchen/workspace/poppy -I/home/jabinchen/workspace/poppy/thirdparty/zlib-1.2.8 -MT mqrspec.lo -MD -MP -MF .deps/mqrspec.Tpo -c mqrspec.c  -fPIC -DPIC -o .libs/mqrspec.o
+mv -f .deps/mqrspec.Tpo .deps/mqrspec.Plo
+/bin/sh ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I.     -Wall -I/home/jabinchen/workspace/poppy  -I/home/jabinchen/workspace/poppy/thirdparty/zlib-1.2.8 -MT mmask.lo -MD -MP -MF .deps/mmask.Tpo -c -o mmask.lo mmask.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -Wall -I/home/jabinchen/workspace/poppy -I/home/jabinchen/workspace/poppy/thirdparty/zlib-1.2.8 -MT mmask.lo -MD -MP -MF .deps/mmask.Tpo -c mmask.c  -fPIC -DPIC -o .libs/mmask.o
+mv -f .deps/mmask.Tpo .deps/mmask.Plo
+/bin/sh ./libtool  --tag=CC   --mode=link gcc  -Wall -I/home/jabinchen/workspace/poppy  -I/home/jabinchen/workspace/poppy/thirdparty/zlib-1.2.8 -version-number 3:4:4 -L/home/jabinchen/workspace/poppy/build64_release/thirdparty/zlib-1.2.8 -lz -lm -o libqrencode.la -rpath /usr/local/lib qrencode.lo qrinput.lo bitstream.lo qrspec.lo rscode.lo split.lo mask.lo mqrspec.lo mmask.lo  
+libtool: link: gcc -shared  -fPIC -DPIC  .libs/qrencode.o .libs/qrinput.o .libs/bitstream.o .libs/qrspec.o .libs/rscode.o .libs/split.o .libs/mask.o .libs/mqrspec.o .libs/mmask.o   -L/home/jabinchen/workspace/poppy/build64_release/thirdparty/zlib-1.2.8 -lz -lm    -Wl,-soname -Wl,libqrencode.so.3 -o .libs/libqrencode.so.3.4.4
+libtool: link: (cd ".libs" && rm -f "libqrencode.so.3" && ln -s "libqrencode.so.3.4.4" "libqrencode.so.3")
+libtool: link: (cd ".libs" && rm -f "libqrencode.so" && ln -s "libqrencode.so.3.4.4" "libqrencode.so")
+libtool: link: ( cd ".libs" && rm -f "libqrencode.la" && ln -s "../libqrencode.la" "libqrencode.la" )
+gcc -DHAVE_CONFIG_H -I.    -I/data/home/user00/workspace/poppy  -I/data/home/user00/workspace/poppy/thirdparty/libpng -Wall -I/home/jabinchen/workspace/poppy  -I/home/jabinchen/workspace/poppy/thirdparty/zlib-1.2.8 -MT qrencode-qrenc.o -MD -MP -MF .deps/qrencode-qrenc.Tpo -c -o qrencode-qrenc.o `test -f 'qrenc.c' || echo './'`qrenc.c
+mv -f .deps/qrencode-qrenc.Tpo .deps/qrencode-qrenc.Po
+/bin/sh ./libtool  --tag=CC   --mode=link gcc -I/data/home/user00/workspace/poppy  -I/data/home/user00/workspace/poppy/thirdparty/libpng -Wall -I/home/jabinchen/workspace/poppy  -I/home/jabinchen/workspace/poppy/thirdparty/zlib-1.2.8  -L/home/jabinchen/workspace/poppy/build64_release/thirdparty/zlib-1.2.8 -lz -lm -o qrencode qrencode-qrenc.o libqrencode.la /data/home/user00/workspace/poppy/build64_release/thirdparty/libpng-1.5.21/libpng15.a -L/data/home/user00/workspace/poppy/build64_release/thirdparty/libpng 
+libtool: link: gcc -I/data/home/user00/workspace/poppy -I/data/home/user00/workspace/poppy/thirdparty/libpng -Wall -I/home/jabinchen/workspace/poppy -I/home/jabinchen/workspace/poppy/thirdparty/zlib-1.2.8 -o .libs/qrencode qrencode-qrenc.o  -L/home/jabinchen/workspace/poppy/build64_release/thirdparty/zlib-1.2.8 -lz -lm ./.libs/libqrencode.so /data/home/user00/workspace/poppy/build64_release/thirdparty/libpng-1.5.21/libpng15.a -L/data/home/user00/workspace/poppy/build64_release/thirdparty/libpng -Wl,-rpath -Wl,/usr/local/lib
+make[2]: Leaving directory `/data/home/user00/workspace/thirdparty/qrencode-3.4.4'
+make[1]: Leaving directory `/data/home/user00/workspace/thirdparty/qrencode-3.4.4'

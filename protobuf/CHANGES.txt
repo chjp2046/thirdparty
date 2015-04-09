@@ -1,0 +1,5 @@
+* Closure 替换为 Common 里的 Closure
+* 考虑到搜索大量使用 GBK 编码文本，暂时屏蔽了对 string 必须是 UTF-8 的检查
+* RpcController 根据 Poppy 需要加了一些成员
+* 用 GLOG 替换了 protobuf 自己定义的 GOOGLE_LOG
+
