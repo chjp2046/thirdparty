@@ -11,7 +11,6 @@ cc_library(
     srcs = 'memory_mysql.cc',
     deps = [
         ':mysqld',
-        '//common/base:module',
         '//thirdparty/glog:glog',
     ],
     link_all_symbols = True,
