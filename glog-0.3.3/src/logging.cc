@@ -209,62 +209,6 @@ static void GetHostName(string* hostname) {
 }
 
 
-static string GetLastLogFileOfCurDate(const string& file_name_prefix, string* file_name) {
-#if defined(HAVE_SYS_UTSNAME_H)
-    static bool bInit = false;
-    if (bInit == false)
-    {
-        bInit = true;
-
-        char szDirName[NAME_MAX + 1] = {0};
-        snprintf(szDirName, sizeof(szDirName), "%s", file_name_prefix.c_str());
-        char* pszDirName = dirname(szDirName);
-
-        char szBaseName[NAME_MAX + 1] = {0};
-        snprintf(szBaseName, sizeof(szBaseName), "%s", file_name_prefix.c_str());
-        char* pszBasename = basename(szBaseName);
-
-        size_t base_name_length = strlen(pszBasename);
-
-        DIR* FD;
-        struct dirent* in_file;
-
-        /* Scanning the in directory */
-        if (NULL == (FD = opendir (pszDirName))) 
-        {
-            file_name->clear();
-        }
-
-        char szLastLogFileName[NAME_MAX + 1] = {0};
-
-        while ((in_file = readdir(FD))) 
-        {
-            if (strncmp(in_file->d_name, pszBasename, base_name_length) == 0 &&
-                strncmp(szLastLogFileName, in_file->d_name, sizeof(szLastLogFileName)) < 0)
-            {
-                strncpy(szLastLogFileName, in_file->d_name, sizeof(szLastLogFileName));
-            }
-        }
-
-        file_name->assign(pszDirName);
-        (file_name->append("/")).append(szLastLogFileName);
-
-        closedir(FD);
-    }
-    else
-    {
-        file_name->clear();
-    }
-
-#elif defined(OS_WINDOWS)
-# warning not support yet;
-    file_name->clear();
-#else
-# warning There is no way to retrieve the host name.
-    file_name->clear();
-#endif
-}
-
 // Returns true iff terminal supports using colors in output.
 static bool TerminalSupportsColor() {
   bool term_supports_color = false;
@@ -460,11 +404,13 @@ class LogFileObject : public base::Logger {
   uint32 file_length_;
   unsigned int rollover_attempt_;
   int64 next_flush_time_;         // cycle count at which to flush log
-
+  bool find_last_log_file_name;
   // Actually create a logfile using the value of base_filename_ and the
   // supplied argument time_pid_string
   // REQUIRES: lock_ is held
   bool CreateLogfile(time_t timestamp);
+
+  void GetLastLogFileOfCurDate(const string& file_name_prefix, string* file_name);
 };
 
 }  // namespace
@@ -857,7 +803,9 @@ LogFileObject::LogFileObject(LogSeverity severity,
     bytes_since_flush_(0),
     file_length_(0),
     rollover_attempt_(kRolloverAttemptFrequency-1),
-    next_flush_time_(0) {
+    next_flush_time_(0),
+    find_last_log_file_name(false)
+{
   assert(severity >= 0);
   assert(severity < NUM_SEVERITIES);
 }
@@ -933,7 +881,7 @@ bool LogFileObject::CreateLogfile(time_t timestamp) {
     
   const string& date_string = time_pid_stream.str();
 
-  time_pid_stream.fill('0');
+  time_pid_stream.str("");
 
   time_pid_stream << setw(2) << tm_time.tm_hour
       << setw(2) << tm_time.tm_min
@@ -957,7 +905,7 @@ bool LogFileObject::CreateLogfile(time_t timestamp) {
   
   if (string_filename.empty())
   {
-      string string_filename = base_filename_ + filename_extension_ + date_string
+      string_filename = base_filename_ + filename_extension_ + date_string
             + time_pid_string;
   }
   
@@ -965,7 +913,8 @@ bool LogFileObject::CreateLogfile(time_t timestamp) {
   //                         time_pid_string;
 
   const char* filename = string_filename.c_str();
-  int fd = open(filename, O_WRONLY | O_CREAT | O_EXCL, 0664);
+  //int fd = open(filename, O_WRONLY | O_CREAT | O_EXCL, 0664);
+  int fd = open(filename, O_WRONLY | O_CREAT , 0664);
   if (fd == -1) return false;
 #ifdef HAVE_FCNTL
   // Mark the file close-on-exec. We don't really care if this fails
@@ -1016,6 +965,74 @@ bool LogFileObject::CreateLogfile(time_t timestamp) {
   }
 
   return true;  // Everything worked
+}
+
+
+void LogFileObject::GetLastLogFileOfCurDate(const string& file_name_prefix, string* file_name) {
+#if defined(HAVE_SYS_UTSNAME_H)
+    if (find_last_log_file_name == false)
+    {
+        find_last_log_file_name = true;
+
+        char szDirName[NAME_MAX + 1] = {0};
+        snprintf(szDirName, sizeof(szDirName), "%s", file_name_prefix.c_str());
+        char* pszDirName = dirname(szDirName);
+
+        char szBaseName[NAME_MAX + 1] = {0};
+        snprintf(szBaseName, sizeof(szBaseName), "%s", file_name_prefix.c_str());
+        char* pszBasename = basename(szBaseName);
+
+        size_t base_name_length = strlen(pszBasename);
+
+        DIR* FD;
+        struct dirent* in_file;
+
+        /* Scanning the in directory */
+        if (NULL == (FD = opendir (pszDirName))) 
+        {
+            file_name->clear();
+            fprintf(stderr, "COULD NOT OPEN DIR '%s'!\n",
+                pszDirName);
+        }
+        else
+        {
+            char szLastLogFileName[NAME_MAX + 1] = {0};
+
+            while ((in_file = readdir(FD))) 
+            {
+                if (strncmp(in_file->d_name, pszBasename, base_name_length) == 0 &&
+                    strncmp(szLastLogFileName, in_file->d_name, sizeof(szLastLogFileName)) < 0)
+                {
+                    strncpy(szLastLogFileName, in_file->d_name, sizeof(szLastLogFileName));
+                }
+            }
+
+            if (strlen(szLastLogFileName) > 0)
+            {
+                file_name->clear();
+                file_name->append(pszDirName);
+                (file_name->append("/")).append(szLastLogFileName);
+            }
+            else
+            {
+                file_name->clear();
+            }
+
+            closedir(FD);
+        }
+    }
+    else
+    {
+        file_name->clear();
+    }
+
+#elif defined(OS_WINDOWS)
+# warning not support yet;
+    file_name->clear();
+#else
+# warning There is no way to retrieve the host name.
+    file_name->clear();
+#endif
 }
 
 void LogFileObject::Write(bool force_flush,
