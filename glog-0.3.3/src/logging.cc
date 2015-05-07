@@ -969,7 +969,7 @@ bool LogFileObject::CreateLogfile(time_t timestamp) {
 
 
 void LogFileObject::GetLastLogFileOfCurDate(const string& file_name_prefix, string* file_name) {
-#if defined(HAVE_SYS_UTSNAME_H)
+#if defined(OS_LINUX)
     if (find_last_log_file_name == false)
     {
         find_last_log_file_name = true;
@@ -1025,10 +1025,6 @@ void LogFileObject::GetLastLogFileOfCurDate(const string& file_name_prefix, stri
     {
         file_name->clear();
     }
-
-#elif defined(OS_WINDOWS)
-# warning not support yet;
-    file_name->clear();
 #else
 # warning There is no way to retrieve the host name.
     file_name->clear();
