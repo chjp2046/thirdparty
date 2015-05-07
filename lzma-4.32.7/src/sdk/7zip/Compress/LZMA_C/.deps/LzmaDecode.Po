@@ -1,6 +1,0 @@
-LzmaDecode.o: LzmaDecode.c LzmaDecode.h \
- /usr/local/gcc/4.9.2/lib/gcc/x86_64-unknown-linux-gnu/4.9.2/include/stddef.h
-
-LzmaDecode.h:
-
-/usr/local/gcc/4.9.2/lib/gcc/x86_64-unknown-linux-gnu/4.9.2/include/stddef.h:
