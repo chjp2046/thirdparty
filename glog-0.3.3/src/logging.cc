@@ -1061,8 +1061,8 @@ void LogFileObject::Write(bool force_flush,
     if (base_filename_selected_) {
       if (!CreateLogfile(timestamp)) {
         perror("Could not create log file");
-        fprintf(stderr, "COULD NOT CREATE LOGFILE '%lld'!\n",
-                static_cast<long long>(timestamp));
+        fprintf(stderr, "COULD NOT CREATE LOGFILE, base_name: %s!\n",
+                base_filename_.c_str());
         return;
       }
     } else {
@@ -1110,8 +1110,8 @@ void LogFileObject::Write(bool force_flush,
       // If we never succeeded, we have to give up
       if ( success == false ) {
         perror("Could not create logging file");
-        fprintf(stderr, "COULD NOT CREATE A LOGGINGFILE %lld!",
-                static_cast<long long>(timestamp));
+        fprintf(stderr, "COULD NOT CREATE LOGFILE, base_name: %s!\n",
+            base_filename_.c_str());
         return;
       }
     }
