@@ -21,7 +21,6 @@ libimagequant-prefix
 Makefile.in
 /aclocal.m4
 /autom4te.cache
-/config.h
 /config.cache
 /config.log
 /config.status
@@ -41,7 +40,6 @@ Makefile.in
 /m4/ltsugar.m4
 /m4/ltversion.m4
 /m4/lt~obsolete.m4
-/src/config.h
 /src/config.hin
 /src/stamp-h1
 
