@@ -5,7 +5,6 @@ cc_library(
                     'pngerror.c',
                     'pngget.c',
                     'pngmem.c',
-                    'pngmem.c',
                     'pngpread.c',
                     'pngread.c',
                     'pngrio.c',
