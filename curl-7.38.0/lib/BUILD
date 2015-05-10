@@ -127,10 +127,11 @@ cc_library(
         '//thirdparty/expat:expat',
         '//thirdparty/openssl:ssl',
         '//thirdparty/openssl:crypto',
-        '#z',
-        '#rt'
     ],
-    warning = 'no'
+	linkopts = [
+		"-z",
+		"-rt"
+	],
 )
 
 

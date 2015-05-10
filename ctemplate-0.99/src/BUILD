@@ -15,5 +15,14 @@ cc_library(
         'htmlparser/jsparser.cc',
         'htmlparser/statemachine.cc'
     ],
-    deps = ['#pthread'],
+	hdrs = [":headers"],
+    linkopts = ["-pthread"],
+	visibility = ["//thirdparty/ctemplate:__pkg__"],
+)
+
+filegroup(
+    name = "headers",
+    srcs = glob([
+        "*.h"
+    ]),
 )
