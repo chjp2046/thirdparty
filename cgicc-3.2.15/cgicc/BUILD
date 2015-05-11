@@ -25,13 +25,5 @@ cc_library(
         'XHTMLDoctype.cpp',
         'XMLPI.cpp'
     ],
-	hdrs = [":headers"],
-	visibility = ["//thirdparty/cgicc:__pkg__"],
-)
-
-filegroup(
-    name = "headers",
-    srcs = glob([
-        "*.h"
-    ]),
+	warning = 'no'
 )
