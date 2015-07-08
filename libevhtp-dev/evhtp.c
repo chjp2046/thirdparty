@@ -21,7 +21,7 @@
 #endif
 
 #include <limits.h>
-#include <event2/dns.h>
+#include "thirdparty/libevent/event2/dns.h"
 
 #include "evhtp-internal.h"
 #include "evhtp_numtoa.h"

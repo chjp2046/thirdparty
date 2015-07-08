@@ -16,8 +16,8 @@
 #include <unistd.h>
 #include <pthread.h>
 
-#include <event2/event.h>
-#include <event2/thread.h>
+#include "thirdparty/libevent/event2/event.h"
+#include "thirdparty/libevent/event2/thread.h"
 
 #include "evhtp-internal.h"
 #include "evthr.h"

@@ -1,7 +1,7 @@
 #ifndef __EVHTP__H__
 #define __EVHTP__H__
 
-#include <evhtp-config.h>
+#include "evhtp-config.h"
 
 #ifndef EVHTP_EXPORT
 # if (defined __GNUC__ && __GNUC__ >= 4) || defined __INTEL_COMPILER || defined __clang__
@@ -12,26 +12,26 @@
 #endif
 
 #ifndef EVHTP_DISABLE_EVTHR
-#include <evthr.h>
+#include "evthr/evthr.h"
 #endif
 
-#include <htparse.h>
+#include "htparse/htparse.h"
 
 #ifndef EVHTP_DISABLE_REGEX
-#include <onigposix.h>
+#include "oniguruma/onigposix.h"
 #endif
 
 #include <sys/queue.h>
-#include <event2/event.h>
-#include <event2/listener.h>
-#include <event2/buffer.h>
-#include <event2/bufferevent.h>
+#include "thirdparty/libevent/event2/event.h"
+#include "thirdparty/libevent/event2/listener.h"
+#include "thirdparty/libevent/event2/buffer.h"
+#include "thirdparty/libevent/event2/bufferevent.h"
 
 #ifndef EVHTP_DISABLE_SSL
-#include <event2/bufferevent_ssl.h>
-#include <openssl/ssl.h>
-#include <openssl/err.h>
-#include <openssl/rand.h>
+#include "thirdparty/libevent/event2/bufferevent_ssl.h"
+#include "thirdparty/openssl/ssl.h"
+#include "thirdparty/openssl/err.h"
+#include "thirdparty/openssl/rand.h"
 #endif
 
 #ifdef __cplusplus

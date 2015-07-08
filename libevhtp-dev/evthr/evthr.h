@@ -7,8 +7,8 @@
 #include <sched.h>
 #include <pthread.h>
 #include <sys/queue.h>
-#include <event2/event.h>
-#include <event2/thread.h>
+#include "thirdparty/libevent/event2/event.h"
+#include "thirdparty/libevent/event2/thread.h"
 
 #ifdef __cplusplus
 extern "C" {
