@@ -24,6 +24,7 @@ cc_library(
         "evdns.c",
         "evrpc.c",
         'evthread_pthread.c',
+        'bufferevent_openssl.c'
     ],
     incs = ['include', 'include/event2', 'compat'],
     defs = 'HAVE_CONFIG_H',
