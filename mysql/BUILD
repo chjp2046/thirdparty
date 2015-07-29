@@ -20,5 +20,5 @@
 
 #cp -Prv * /data/home/user00/workspace/thirdparty/mysql/lib64_release
 
-cc_library(name = "libwebscalesqlclient", prebuilt = 1, deps = [ '#pthread', '#m', '#rt', '#dl' ])
-cc_library(name = "libwebscalesqlclient_r", prebuilt = 1, deps = [ '#pthread', '#m', '#rt', '#dl' ])
+cc_library(name = "webscalesqlclient", prebuilt = 1, deps = [ '#pthread', '#m', '#rt', '#dl' ])
+cc_library(name = "webscalesqlclient_r", prebuilt = 1, deps = [ '#pthread', '#m', '#rt', '#dl' ])
