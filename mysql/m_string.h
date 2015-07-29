@@ -37,33 +37,23 @@
 /* need by my_vsnprintf */
 #include <stdarg.h> 
 
-/*  This is needed for the definitions of bzero... on solaris */
-#if defined(HAVE_STRINGS_H)
-#include <strings.h>
-#endif
-
 /*  This is needed for the definitions of memcpy... on solaris */
 #if defined(HAVE_MEMORY_H) && !defined(__cplusplus)
 #include <memory.h>
 #endif
 
+#define bfill please_use_memset_rather_than_bfill()
+
+#if defined(bzero)
+#undef bzero
+#endif
+#define bzero please_use_memset_rather_than_bzero()
+
 #if !defined(HAVE_MEMCPY) && !defined(HAVE_MEMMOVE)
 # define memcpy(d, s, n)	bcopy ((s), (d), (n))
-# define memset(A,C,B)		bfill((A),(B),(C))
 # define memmove(d, s, n)	bmove ((d), (s), (n))
 #elif defined(HAVE_MEMMOVE)
 # define bmove(d, s, n)		memmove((d), (s), (n))
-#endif
-
-/* Unixware 7 */
-#if !defined(HAVE_BFILL)
-# define bfill(A,B,C)           memset((A),(C),(B))
-#endif
-
-#if !defined(bzero) && (!defined(HAVE_BZERO) || !HAVE_DECL_BZERO || defined(_AIX))
-/* See autoconf doku: "HAVE_DECL_symbol" will be defined after configure, to 0 or 1 */
-/* AIX has bzero() as a function, but the declaration prototype is strangely hidden */
-# define bzero(A,B)             memset((A),0,(B))
 #endif
 
 #if defined(__cplusplus)
@@ -71,10 +61,12 @@ extern "C" {
 #endif
 
 /*
-  my_str_malloc() and my_str_free() are assigned to implementations in
-  strings/alloc.c, but can be overridden in the calling program.
+  my_str_malloc(), my_str_realloc() and my_str_free() are assigned to
+  implementations in strings/alloc.c, but can be overridden in
+  the calling program.
  */
 extern void *(*my_str_malloc)(size_t);
+extern void *(*my_str_realloc)(void *, size_t);
 extern void (*my_str_free)(void *);
 
 #if defined(HAVE_STPCPY) && MY_GNUC_PREREQ(3, 4) && !defined(__INTEL_COMPILER)
@@ -159,7 +151,7 @@ size_t my_gcvt(double x, my_gcvt_arg_type type, int width, char *to,
   (DBL_DIG + 2) significant digits + sign + "." + ("e-NNN" or
   MAX_DECPT_FOR_F_FORMAT zeros for cases when |x|<1 and the 'f' format is used).
 */
-#define MY_GCVT_MAX_FIELD_WIDTH (DBL_DIG + 4 + max(5, MAX_DECPT_FOR_F_FORMAT)) \
+#define MY_GCVT_MAX_FIELD_WIDTH (DBL_DIG + 4 + MY_MAX(5, MAX_DECPT_FOR_F_FORMAT)) \
 
 extern char *llstr(longlong value,char *buff);
 extern char *ullstr(longlong value,char *buff);

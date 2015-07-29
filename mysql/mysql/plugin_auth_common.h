@@ -1,5 +1,5 @@
 #ifndef MYSQL_PLUGIN_AUTH_COMMON_INCLUDED
-/* Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
+/* Copyright (c) 2010, 2012, Oracle and/or its affiliates. All rights reserved.
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -29,6 +29,27 @@
   return values of the plugin authenticate_user() method.
 */
 
+/**
+  Authentication failed, plugin internal error.
+  An error occurred in the authentication plugin itself.
+  These errors are reported in table performance_schema.host_cache,
+  column COUNT_AUTH_PLUGIN_ERRORS.
+*/
+#define CR_AUTH_PLUGIN_ERROR 3
+/**
+  Authentication failed, client server handshake.
+  An error occurred during the client server handshake.
+  These errors are reported in table performance_schema.host_cache,
+  column COUNT_HANDSHAKE_ERRORS.
+*/
+#define CR_AUTH_HANDSHAKE 2
+/**
+  Authentication failed, user credentials.
+  For example, wrong passwords.
+  These errors are reported in table performance_schema.host_cache,
+  column COUNT_AUTHENTICATION_ERRORS.
+*/
+#define CR_AUTH_USER_CREDENTIALS 1
 /**
   Authentication failed. Additionally, all other CR_xxx values
   (libmysql error code) can be used too.
@@ -72,6 +93,8 @@ typedef struct st_plugin_vio_info
 #endif
 } MYSQL_PLUGIN_VIO_INFO;
 
+struct st_mysql;
+
 /**
   Provides plugin access to communication channel
 */
@@ -84,7 +107,7 @@ typedef struct st_plugin_vio
   */
   int (*read_packet)(struct st_plugin_vio *vio, 
                      unsigned char **buf);
-  
+
   /**
     Plugin provides a buffer with data and the length and this
     function sends it as a packet. Returns 0 on success, 1 on failure.
@@ -98,6 +121,19 @@ typedef struct st_plugin_vio
     about the connection.
   */
   void (*info)(struct st_plugin_vio *vio, struct st_plugin_vio_info *info);
+  struct st_mysql* mysql;
+
+  /* Async MySQL extension fields here. */
+  /* NOTE: this really returns a net_async_status */
+  int (*read_packet_nonblocking)(struct st_plugin_vio *vio,
+                                 unsigned char **buf,
+                                 int *result);
+
+  /* NOTE: this really returns a net_async_status */
+  int (*write_packet_nonblocking)(struct st_plugin_vio *vio,
+                                  const unsigned char *packet,
+                                  int packet_len,
+                                  int *result);
 
 } MYSQL_PLUGIN_VIO;
 

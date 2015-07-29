@@ -42,9 +42,11 @@
 extern "C" {
 #endif
 
-#ifndef _global_h				/* If not standard header */
+#ifndef MY_GLOBAL_INCLUDED                /* If not standard header */
 #ifndef MYSQL_ABI_CHECK
+#include <sys/socket.h>
 #include <sys/types.h>
+#include <sys/uio.h>
 #endif
 #ifdef __LCC__
 #include <winsock2.h>				/* For windows */
@@ -66,7 +68,7 @@ typedef char my_bool;
 typedef int my_socket;
 #endif /* __WIN__ */
 #endif /* my_socket_defined */
-#endif /* _global_h */
+#endif /* MY_GLOBAL_INCLUDED */
 
 #include "mysql_version.h"
 #include "mysql_com.h"
@@ -77,8 +79,8 @@ typedef int my_socket;
 extern unsigned int mysql_port;
 extern char *mysql_unix_port;
 
-#define CLIENT_NET_READ_TIMEOUT		365*24*3600	/* Timeout on read */
-#define CLIENT_NET_WRITE_TIMEOUT	365*24*3600	/* Timeout on write */
+#define CLIENT_NET_READ_TIMEOUT		7*24*3600	/* Timeout on read */
+#define CLIENT_NET_WRITE_TIMEOUT	7*24*3600	/* Timeout on write */
 
 #define IS_PRI_KEY(n)	((n) & PRI_KEY_FLAG)
 #define IS_NOT_NULL(n)	((n) & NOT_NULL_FLAG)
@@ -118,7 +120,7 @@ typedef struct st_mysql_field {
 typedef char **MYSQL_ROW;		/* return data as array of strings */
 typedef unsigned int MYSQL_FIELD_OFFSET; /* offset to current field */
 
-#ifndef _global_h
+#ifndef MY_GLOBAL_INCLUDED
 #if defined(NO_CLIENT_LONG_LONG)
 typedef unsigned long my_ulonglong;
 #elif defined (__WIN__)
@@ -167,7 +169,18 @@ enum mysql_option
   MYSQL_OPT_GUESS_CONNECTION, MYSQL_SET_CLIENT_IP, MYSQL_SECURE_AUTH,
   MYSQL_REPORT_DATA_TRUNCATION, MYSQL_OPT_RECONNECT,
   MYSQL_OPT_SSL_VERIFY_SERVER_CERT, MYSQL_PLUGIN_DIR, MYSQL_DEFAULT_AUTH,
-  MYSQL_ENABLE_CLEARTEXT_PLUGIN
+  MYSQL_OPT_BIND,
+  MYSQL_OPT_SSL_KEY, MYSQL_OPT_SSL_CERT, 
+  MYSQL_OPT_SSL_CA, MYSQL_OPT_SSL_CAPATH, MYSQL_OPT_SSL_CIPHER,
+  MYSQL_OPT_SSL_CRL, MYSQL_OPT_SSL_CRLPATH,
+  MYSQL_OPT_CONNECT_ATTR_RESET, MYSQL_OPT_CONNECT_ATTR_ADD,
+  MYSQL_OPT_CONNECT_ATTR_DELETE,
+  MYSQL_SERVER_PUBLIC_KEY,
+  MYSQL_ENABLE_CLEARTEXT_PLUGIN,
+  MYSQL_OPT_CAN_HANDLE_EXPIRED_PASSWORDS,
+  MYSQL_OPT_CONNECT_TIMEOUT_MS,
+  MYSQL_OPT_READ_TIMEOUT_MS,
+  MYSQL_OPT_WRITE_TIMEOUT_MS
 };
 
 /**
@@ -177,7 +190,7 @@ enum mysql_option
 struct st_mysql_options_extention; 
 
 struct st_mysql_options {
-  unsigned int connect_timeout, read_timeout, write_timeout;
+  timeout_t connect_timeout, read_timeout, write_timeout;
   unsigned int port, protocol;
   unsigned long client_flag;
   char *host,*user,*password,*unix_socket,*db;
@@ -197,7 +210,20 @@ struct st_mysql_options {
   my_bool unused3;
   my_bool unused4;
   enum mysql_option methods_to_use;
-  char *client_ip;
+  union {
+    /*
+      The ip/hostname to use when authenticating
+      client against embedded server built with
+      grant tables - only used in embedded server
+    */
+    char *client_ip;
+
+    /*
+      The local address to bind when connecting to
+      remote server - not used in embedded server
+    */
+    char *bind_address;
+  } ci;
   /* Refuse client connecting to server if it uses old (pre-4.1.1) protocol */
   my_bool secure_auth;
   /* 0 - never report, 1 - always report (default) */
@@ -212,13 +238,13 @@ struct st_mysql_options {
   struct st_mysql_options_extention *extension;
 };
 
-enum mysql_status 
+enum mysql_status
 {
   MYSQL_STATUS_READY, MYSQL_STATUS_GET_RESULT, MYSQL_STATUS_USE_RESULT,
   MYSQL_STATUS_STATEMENT_GET_RESULT
 };
 
-enum mysql_protocol_type 
+enum mysql_protocol_type
 {
   MYSQL_PROTOCOL_DEFAULT, MYSQL_PROTOCOL_TCP, MYSQL_PROTOCOL_SOCKET,
   MYSQL_PROTOCOL_PIPE, MYSQL_PROTOCOL_MEMORY
@@ -238,6 +264,43 @@ typedef struct character_set
 
 struct st_mysql_methods;
 struct st_mysql_stmt;
+
+/*
+  The status representing three basic operations of mysql client.
+*/
+enum mysql_async_operation_status {
+  ASYNC_OP_UNSET = 18000,
+  ASYNC_OP_CONNECT = 18010,
+  ASYNC_OP_QUERY = 18020
+};
+
+enum mysql_async_query_state_enum {
+  QUERY_IDLE = 0,
+  QUERY_SENDING,
+  QUERY_READING_RESULT
+};
+
+/* Our state machines have four simple return codes: */
+enum mysql_state_machine_status_enum {
+  /* "1800" is abritrary - just to make these values more distinctive. */
+  STATE_MACHINE_FAILED = 1800,  /* 1) Completion with a failure. */
+  STATE_MACHINE_CONTINUE,       /* 2) Keep calling the state machine. */
+  STATE_MACHINE_WOULD_BLOCK,    /* 3) Needs to block to continue. */
+  STATE_MACHINE_DONE            /* 4) Completion with a success. */
+};
+
+typedef enum mysql_state_machine_status_enum mysql_state_machine_status;
+
+/*
+  connecting is handled with a state machine.  Each state is
+  represented by a function pointer (csm_function) which returns
+  a mysql_state_machine_status to indicate the state of the connection.
+  This state machine has boundaries around network IO to allow reuse
+  between blocking and non-blocking clients.
+*/
+
+struct mysql_st_mysql_csm_context;
+typedef struct mysql_st_mysql_csm_context mysql_csm_context;
 
 typedef struct st_mysql
 {
@@ -281,8 +344,31 @@ typedef struct st_mysql
   /* needed for embedded server - no net buffer to store the 'info' */
   char *info_buffer;
   void *extension;
+
+  /* Async MySQL extension fields here. */
+  /* non blocking api data for cli_read_rows_nonblocking*/
+  MYSQL_DATA *rows_result_buffer; /* buffer storing the rows result
+                                     for cli_read_rows_nonblocking
+                                  */
+  MYSQL_ROWS **prev_row_ptr;      /* a pointer for keep track of the previous
+                                     row of the current result row
+                                  */
+
+  /* Context for connections */
+  mysql_csm_context *connect_context;
+
+  /* Status of the current async op */
+  enum mysql_async_operation_status async_op_status;
+
+  /* Size of the current running async query */
+  size_t async_query_length;
+
+  /* If a query is running, this is its state  */
+  enum mysql_async_query_state_enum async_query_state;
 } MYSQL;
 
+/* The state function type */
+typedef mysql_state_machine_status (*csm_function)(mysql_csm_context*);
 
 typedef struct st_mysql_res {
   my_ulonglong  row_count;
@@ -302,6 +388,47 @@ typedef struct st_mysql_res {
   void *extension;
 } MYSQL_RES;
 
+/*
+  struct to track the state of a connection being established.  Once
+  the connection is established, the context should be discarded and
+  relevant values copied out of it.
+*/
+
+struct st_mysql_authsm_context;
+
+struct mysql_st_mysql_csm_context {
+  /* state for the overall connection process */
+  MYSQL *mysql;
+  const char *host;
+  const char *user;
+  const char *passwd;
+  const char *db;
+  uint port;
+  const char *unix_socket;
+  unsigned long client_flag;
+  my_bool non_blocking;
+
+  struct sockaddr *addr;
+  socklen_t len;
+  unsigned long pkt_length;
+  char *host_info;
+  char buff[NAME_LEN+USERNAME_LENGTH+100];
+  int scramble_data_len;
+  int pkt_scramble_len;
+  char *scramble_data;
+  const char *scramble_plugin;
+
+  struct st_mysql_authsm_context *auth_context;
+
+  /* state for running init_commands */
+  my_bool saved_reconnect;
+  char **current_init_command;
+  char **last_init_command;
+  MYSQL_RES *init_command_result;
+
+  /* state function that will be called next */
+  csm_function state_function;
+};
 
 #if !defined(MYSQL_SERVER) && !defined(MYSQL_CLIENT)
 #define MYSQL_CLIENT
@@ -400,6 +527,30 @@ int		STDCALL mysql_real_query(MYSQL *mysql, const char *q,
 MYSQL_RES *     STDCALL mysql_store_result(MYSQL *mysql);
 MYSQL_RES *     STDCALL mysql_use_result(MYSQL *mysql);
 
+my_bool		STDCALL mysql_real_connect_nonblocking_init(MYSQL *mysql,
+							    const char *host,
+							    const char *user,
+							    const char *passwd,
+							    const char *db,
+							    unsigned int port,
+							    const char *unix_socket,
+							    unsigned long clientflag);
+net_async_status STDCALL mysql_real_connect_nonblocking_run(MYSQL *mysql,
+                                                            int *error);
+net_async_status STDCALL
+mysql_send_query_nonblocking(MYSQL* mysql, const char* query, int *error);
+net_async_status STDCALL
+mysql_real_query_nonblocking(MYSQL *mysql, const char* query,
+                             unsigned long length, int *error);
+net_async_status STDCALL
+mysql_next_result_nonblocking(MYSQL *mysql, int* error);
+
+net_async_status STDCALL
+mysql_select_db_nonblocking(MYSQL *mysql, const char *db, my_bool* error);
+
+int STDCALL
+mysql_get_file_descriptor(MYSQL *mysql);
+
 void        STDCALL mysql_get_character_set_info(MYSQL *mysql,
                            MY_CHARSET_INFO *charset);
 
@@ -444,7 +595,10 @@ MYSQL_RES *	STDCALL mysql_list_tables(MYSQL *mysql,const char *wild);
 MYSQL_RES *	STDCALL mysql_list_processes(MYSQL *mysql);
 int		STDCALL mysql_options(MYSQL *mysql,enum mysql_option option,
 				      const void *arg);
+int		STDCALL mysql_options4(MYSQL *mysql,enum mysql_option option,
+                                       const void *arg1, const void *arg2);
 void		STDCALL mysql_free_result(MYSQL_RES *result);
+net_async_status STDCALL mysql_free_result_nonblocking(MYSQL_RES *result);
 void		STDCALL mysql_data_seek(MYSQL_RES *result,
 					my_ulonglong offset);
 MYSQL_ROW_OFFSET STDCALL mysql_row_seek(MYSQL_RES *result,
@@ -452,6 +606,8 @@ MYSQL_ROW_OFFSET STDCALL mysql_row_seek(MYSQL_RES *result,
 MYSQL_FIELD_OFFSET STDCALL mysql_field_seek(MYSQL_RES *result,
 					   MYSQL_FIELD_OFFSET offset);
 MYSQL_ROW	STDCALL mysql_fetch_row(MYSQL_RES *result);
+net_async_status STDCALL mysql_fetch_row_nonblocking(MYSQL_RES *res,
+						     MYSQL_ROW* row);
 unsigned long * STDCALL mysql_fetch_lengths(MYSQL_RES *result);
 MYSQL_FIELD *	STDCALL mysql_fetch_field(MYSQL_RES *result);
 MYSQL_RES *     STDCALL mysql_list_fields(MYSQL *mysql, const char *table,
@@ -708,6 +864,8 @@ int		STDCALL mysql_create_db(MYSQL *mysql, const char *DB);
 int		STDCALL mysql_drop_db(MYSQL *mysql, const char *DB);
 #endif
 #define HAVE_MYSQL_REAL_CONNECT
+
+#define HAVE_MYSQL_NONBLOCKING_CLIENT
 
 #ifdef	__cplusplus
 }

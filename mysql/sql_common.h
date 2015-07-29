@@ -23,6 +23,7 @@ extern "C" {
 #endif
 
 #include <mysql.h>
+#include <hash.h>
 
 extern const char	*unknown_sqlstate;
 extern const char	*cant_connect_sqlstate;
@@ -31,6 +32,11 @@ extern const char	*not_error_sqlstate;
 struct st_mysql_options_extention {
   char *plugin_dir;
   char *default_auth;
+  char *ssl_crl;				/* PEM CRL file */
+  char *ssl_crlpath;				/* PEM directory of CRL-s? */
+  HASH connection_attributes;
+  char *server_public_key_path;
+  size_t connection_attributes_length;
   my_bool enable_cleartext_plugin;
 };
 
@@ -63,6 +69,22 @@ typedef struct st_mysql_methods
   my_bool (*next_result)(MYSQL *mysql);
   int (*read_rows_from_cursor)(MYSQL_STMT *stmt);
 #endif
+  net_async_status (*advanced_command_nonblocking)(
+    MYSQL *mysql,
+    enum enum_server_command command,
+    const unsigned char *header,
+    unsigned long header_length,
+    const unsigned char *arg,
+    unsigned long arg_length,
+    my_bool skip_check,
+    MYSQL_STMT *stmt,
+    my_bool* error);
+  net_async_status (*read_query_result_nonblocking)(MYSQL *mysql,
+                                                    my_bool* error);
+  net_async_status (*flush_use_result_nonblocking)(MYSQL *mysql);
+  net_async_status (*next_result_nonblocking)(MYSQL *mysql, my_bool* error);
+  net_async_status (*read_change_user_result_nonblocking)(MYSQL *mysql,
+                                                          ulong *res);
 } MYSQL_METHODS;
 
 #define simple_command(mysql, command, arg, length, skip_check) \
@@ -71,6 +93,10 @@ typedef struct st_mysql_methods
 #define stmt_command(mysql, command, arg, length, stmt) \
   (*(mysql)->methods->advanced_command)(mysql, command, 0,  \
                                         0, arg, length, 1, stmt)
+
+#define simple_command_nonblocking(mysql, command, arg, length, skip_check, error) \
+  (*(mysql)->methods->advanced_command_nonblocking)(mysql, command, 0,  \
+                                        0, arg, length, skip_check, NULL, error)
 
 extern CHARSET_INFO *default_client_charset_info;
 MYSQL_FIELD *unpack_fields(MYSQL *mysql, MYSQL_DATA *data,MEM_ROOT *alloc,
@@ -105,6 +131,7 @@ int mysql_client_plugin_init();
 void mysql_client_plugin_deinit();
 struct st_mysql_client_plugin;
 extern struct st_mysql_client_plugin *mysql_client_builtins[];
+uchar * send_client_connect_attrs(MYSQL *mysql, uchar *buf);
 extern my_bool libmysql_cleartext_plugin_enabled;
 
 #ifdef	__cplusplus

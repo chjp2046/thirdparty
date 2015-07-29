@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2010, 2012, Oracle and/or its affiliates. All rights reserved.
+  Copyright (c) 2010, 2015, Oracle and/or its affiliates. All rights reserved.
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -35,8 +35,10 @@
 #include <debug_sync.h>
 #include <sql_profile.h>
 #include <table.h>
-#include <sql_list.h>
+#include "field.h"
+#include <set>
 
+typedef std::set<THD*>::iterator Thread_iterator;
 /* Needed to get access to scheduler variables */
 void* thd_get_scheduler_data(THD *thd);
 void thd_set_scheduler_data(THD *thd, void *data);
@@ -63,8 +65,9 @@ ulong  thd_get_net_wait_timeout(THD *thd);
 my_socket thd_get_fd(THD *thd);
 int thd_store_globals(THD* thd);
 
-THD *first_global_thread();
-THD *next_global_thread(THD *thd);
+/* Interface to global thread list iterator functions */
+Thread_iterator thd_get_global_thread_list_begin();
+Thread_iterator thd_get_global_thread_list_end();
 
 /* Print to the MySQL error log */
 void sql_print_error(const char *format, ...);
@@ -101,12 +104,14 @@ bool thd_is_connection_alive(THD *thd);
 void close_connection(THD *thd, uint errcode);
 /* End the connection before closing it */
 void end_connection(THD *thd);
-/* Cleanup the THD object */
-void thd_cleanup(THD *thd);
+/* Release resources of the THD object */
+void thd_release_resources(THD *thd);
 /* Decrement connection counter */
 void dec_connection_count();
 /* Destroy THD object */
-void delete_thd(THD *thd);
+void destroy_thd(THD *thd);
+/* Remove the THD from the set of global threads. */
+void remove_global_thread(THD *thd);
 
 /*
   thread_created is maintained by thread pool when activated since

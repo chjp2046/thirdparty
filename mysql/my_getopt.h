@@ -1,5 +1,5 @@
 /*
-   Copyright (c) 2002, 2012, Oracle and/or its affiliates. All rights reserved.
+   Copyright (c) 2002, 2014, Oracle and/or its affiliates. All rights reserved.
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -36,6 +36,7 @@ C_MODE_START
 #define GET_SET       13
 #define GET_DOUBLE    14
 #define GET_FLAGSET   15
+#define GET_PASSWORD  16
 
 #define GET_ASK_ADDR	 128
 #define GET_TYPE_MASK	 127
@@ -66,7 +67,11 @@ struct my_option
                                            If an opton needs neither special
                                            treatment in the my_get_one_option()
                                            nor one-letter short equivalent
-                                           use id=0
+                                           use id=0.
+                                           id=-1 is a special case and is used
+                                           to generate deprecation warnings for
+                                           plugin options. It should not be
+                                           used for anything else.
                                          */
   const char *comment;                  /**< option comment, for autom. --help.
                                            if it's NULL the option is not
@@ -87,9 +92,6 @@ struct my_option
 
 
 typedef my_bool (*my_get_one_option)(int, const struct my_option *, char *);
-typedef void (*my_error_reporter)(enum loglevel level, const char *format, ...)
-  ATTRIBUTE_FORMAT_FPTR(printf, 2, 3);
-
 /**
   Used to retrieve a reference to the object (variable) that holds the value
   for the given option. For example, if var_type is GET_UINT, the function
@@ -107,6 +109,12 @@ extern my_error_reporter my_getopt_error_reporter;
 
 extern int handle_options (int *argc, char ***argv, 
 			   const struct my_option *longopts, my_get_one_option);
+extern int my_handle_options (int *argc, char ***argv,
+                              const struct my_option *longopts,
+                              my_get_one_option,
+                              const char **command_list);
+extern void print_cmdline_password_warning();
+extern void my_cleanup_options(const struct my_option *options);
 extern void my_cleanup_options(const struct my_option *options);
 extern void my_print_help(const struct my_option *options);
 extern void my_print_variables(const struct my_option *options);
@@ -119,6 +127,10 @@ longlong getopt_ll_limit_value(longlong, const struct my_option *,
 double getopt_double_limit_value(double num, const struct my_option *optp,
                                  my_bool *fix);
 my_bool getopt_compare_strings(const char *s, const char *t, uint length);
+ulonglong max_of_int_range(int var_type);
+
+ulonglong getopt_double2ulonglong(double);
+double getopt_ulonglong2double(ulonglong);
 
 C_MODE_END
 
