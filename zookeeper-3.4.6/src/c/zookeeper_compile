@@ -1,0 +1,115 @@
+make  all-am
+make[1]: Entering directory `/data/home/user00/workspace/thirdparty/zookeeper-3.4.6/src/c'
+/bin/sh ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I.  -I./include -I./tests -I./generated  -Wall -Werror  -g -O2 -D_GNU_SOURCE -MT zookeeper.lo -MD -MP -MF .deps/zookeeper.Tpo -c -o zookeeper.lo `test -f 'src/zookeeper.c' || echo './'`src/zookeeper.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./include -I./tests -I./generated -Wall -Werror -g -O2 -D_GNU_SOURCE -MT zookeeper.lo -MD -MP -MF .deps/zookeeper.Tpo -c src/zookeeper.c  -fPIC -DPIC -o .libs/zookeeper.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./include -I./tests -I./generated -Wall -Werror -g -O2 -D_GNU_SOURCE -MT zookeeper.lo -MD -MP -MF .deps/zookeeper.Tpo -c src/zookeeper.c -o zookeeper.o >/dev/null 2>&1
+mv -f .deps/zookeeper.Tpo .deps/zookeeper.Plo
+/bin/sh ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I.  -I./include -I./tests -I./generated  -Wall -Werror  -g -O2 -D_GNU_SOURCE -MT recordio.lo -MD -MP -MF .deps/recordio.Tpo -c -o recordio.lo `test -f 'src/recordio.c' || echo './'`src/recordio.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./include -I./tests -I./generated -Wall -Werror -g -O2 -D_GNU_SOURCE -MT recordio.lo -MD -MP -MF .deps/recordio.Tpo -c src/recordio.c  -fPIC -DPIC -o .libs/recordio.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./include -I./tests -I./generated -Wall -Werror -g -O2 -D_GNU_SOURCE -MT recordio.lo -MD -MP -MF .deps/recordio.Tpo -c src/recordio.c -o recordio.o >/dev/null 2>&1
+mv -f .deps/recordio.Tpo .deps/recordio.Plo
+/bin/sh ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I.  -I./include -I./tests -I./generated  -Wall -Werror  -g -O2 -D_GNU_SOURCE -MT zookeeper.jute.lo -MD -MP -MF .deps/zookeeper.jute.Tpo -c -o zookeeper.jute.lo `test -f 'generated/zookeeper.jute.c' || echo './'`generated/zookeeper.jute.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./include -I./tests -I./generated -Wall -Werror -g -O2 -D_GNU_SOURCE -MT zookeeper.jute.lo -MD -MP -MF .deps/zookeeper.jute.Tpo -c generated/zookeeper.jute.c  -fPIC -DPIC -o .libs/zookeeper.jute.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./include -I./tests -I./generated -Wall -Werror -g -O2 -D_GNU_SOURCE -MT zookeeper.jute.lo -MD -MP -MF .deps/zookeeper.jute.Tpo -c generated/zookeeper.jute.c -o zookeeper.jute.o >/dev/null 2>&1
+mv -f .deps/zookeeper.jute.Tpo .deps/zookeeper.jute.Plo
+/bin/sh ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I.  -I./include -I./tests -I./generated  -Wall -Werror  -g -O2 -D_GNU_SOURCE -MT zk_log.lo -MD -MP -MF .deps/zk_log.Tpo -c -o zk_log.lo `test -f 'src/zk_log.c' || echo './'`src/zk_log.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./include -I./tests -I./generated -Wall -Werror -g -O2 -D_GNU_SOURCE -MT zk_log.lo -MD -MP -MF .deps/zk_log.Tpo -c src/zk_log.c  -fPIC -DPIC -o .libs/zk_log.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./include -I./tests -I./generated -Wall -Werror -g -O2 -D_GNU_SOURCE -MT zk_log.lo -MD -MP -MF .deps/zk_log.Tpo -c src/zk_log.c -o zk_log.o >/dev/null 2>&1
+mv -f .deps/zk_log.Tpo .deps/zk_log.Plo
+/bin/sh ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I.  -I./include -I./tests -I./generated  -Wall -Werror  -g -O2 -D_GNU_SOURCE -MT zk_hashtable.lo -MD -MP -MF .deps/zk_hashtable.Tpo -c -o zk_hashtable.lo `test -f 'src/zk_hashtable.c' || echo './'`src/zk_hashtable.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./include -I./tests -I./generated -Wall -Werror -g -O2 -D_GNU_SOURCE -MT zk_hashtable.lo -MD -MP -MF .deps/zk_hashtable.Tpo -c src/zk_hashtable.c  -fPIC -DPIC -o .libs/zk_hashtable.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./include -I./tests -I./generated -Wall -Werror -g -O2 -D_GNU_SOURCE -MT zk_hashtable.lo -MD -MP -MF .deps/zk_hashtable.Tpo -c src/zk_hashtable.c -o zk_hashtable.o >/dev/null 2>&1
+mv -f .deps/zk_hashtable.Tpo .deps/zk_hashtable.Plo
+/bin/sh ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I.  -I./include -I./tests -I./generated  -Wall -Werror  -g -O2 -D_GNU_SOURCE -MT st_adaptor.lo -MD -MP -MF .deps/st_adaptor.Tpo -c -o st_adaptor.lo `test -f 'src/st_adaptor.c' || echo './'`src/st_adaptor.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./include -I./tests -I./generated -Wall -Werror -g -O2 -D_GNU_SOURCE -MT st_adaptor.lo -MD -MP -MF .deps/st_adaptor.Tpo -c src/st_adaptor.c  -fPIC -DPIC -o .libs/st_adaptor.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./include -I./tests -I./generated -Wall -Werror -g -O2 -D_GNU_SOURCE -MT st_adaptor.lo -MD -MP -MF .deps/st_adaptor.Tpo -c src/st_adaptor.c -o st_adaptor.o >/dev/null 2>&1
+mv -f .deps/st_adaptor.Tpo .deps/st_adaptor.Plo
+/bin/sh ./libtool --tag=CC   --mode=link gcc -Wall -Werror  -g -O2 -D_GNU_SOURCE   -o libzkst.la  zookeeper.lo recordio.lo zookeeper.jute.lo zk_log.lo zk_hashtable.lo st_adaptor.lo -lm 
+libtool: link: ar cru .libs/libzkst.a .libs/zookeeper.o .libs/recordio.o .libs/zookeeper.jute.o .libs/zk_log.o .libs/zk_hashtable.o .libs/st_adaptor.o 
+libtool: link: ranlib .libs/libzkst.a
+libtool: link: ( cd ".libs" && rm -f "libzkst.la" && ln -s "../libzkst.la" "libzkst.la" )
+/bin/sh ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I.  -I./include -I./tests -I./generated  -Wall -Werror  -g -O2 -D_GNU_SOURCE -MT hashtable_itr.lo -MD -MP -MF .deps/hashtable_itr.Tpo -c -o hashtable_itr.lo `test -f 'src/hashtable/hashtable_itr.c' || echo './'`src/hashtable/hashtable_itr.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./include -I./tests -I./generated -Wall -Werror -g -O2 -D_GNU_SOURCE -MT hashtable_itr.lo -MD -MP -MF .deps/hashtable_itr.Tpo -c src/hashtable/hashtable_itr.c  -fPIC -DPIC -o .libs/hashtable_itr.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./include -I./tests -I./generated -Wall -Werror -g -O2 -D_GNU_SOURCE -MT hashtable_itr.lo -MD -MP -MF .deps/hashtable_itr.Tpo -c src/hashtable/hashtable_itr.c -o hashtable_itr.o >/dev/null 2>&1
+mv -f .deps/hashtable_itr.Tpo .deps/hashtable_itr.Plo
+/bin/sh ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I.  -I./include -I./tests -I./generated  -Wall -Werror  -g -O2 -D_GNU_SOURCE -MT hashtable.lo -MD -MP -MF .deps/hashtable.Tpo -c -o hashtable.lo `test -f 'src/hashtable/hashtable.c' || echo './'`src/hashtable/hashtable.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./include -I./tests -I./generated -Wall -Werror -g -O2 -D_GNU_SOURCE -MT hashtable.lo -MD -MP -MF .deps/hashtable.Tpo -c src/hashtable/hashtable.c  -fPIC -DPIC -o .libs/hashtable.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./include -I./tests -I./generated -Wall -Werror -g -O2 -D_GNU_SOURCE -MT hashtable.lo -MD -MP -MF .deps/hashtable.Tpo -c src/hashtable/hashtable.c -o hashtable.o >/dev/null 2>&1
+mv -f .deps/hashtable.Tpo .deps/hashtable.Plo
+/bin/sh ./libtool --tag=CC   --mode=link gcc -Wall -Werror  -g -O2 -D_GNU_SOURCE   -o libhashtable.la  hashtable_itr.lo hashtable.lo  
+libtool: link: ar cru .libs/libhashtable.a .libs/hashtable_itr.o .libs/hashtable.o 
+libtool: link: ranlib .libs/libhashtable.a
+libtool: link: ( cd ".libs" && rm -f "libhashtable.la" && ln -s "../libhashtable.la" "libhashtable.la" )
+/bin/sh ./libtool --tag=CC   --mode=link gcc -Wall -Werror  -g -O2 -D_GNU_SOURCE -no-undefined -version-info 2 -export-symbols-regex '(zoo_|zookeeper_|zhandle|Z|format_log_message|log_message|logLevel|deallocate_|zerror|is_unrecoverable)'  -o libzookeeper_st.la -rpath /usr/local/lib  libzkst.la libhashtable.la 
+libtool: link: /usr/bin/nm -B   ./.libs/libzkst.a ./.libs/libhashtable.a | sed -n -e 's/^.*[	 ]\([ABCDGIRSTW][ABCDGIRSTW]*\)[	 ][	 ]*\([_A-Za-z][_A-Za-z0-9]*\)$/\1 \2 \2/p' | sed '/ __gnu_lto/d' | /bin/sed 's/.* //' | sort | uniq > .libs/libzookeeper_st.exp
+libtool: link: /bin/grep -E -e "(zoo_|zookeeper_|zhandle|Z|format_log_message|log_message|logLevel|deallocate_|zerror|is_unrecoverable)" ".libs/libzookeeper_st.exp" > ".libs/libzookeeper_st.expT"
+libtool: link: mv -f ".libs/libzookeeper_st.expT" ".libs/libzookeeper_st.exp"
+libtool: link: echo "{ global:" > .libs/libzookeeper_st.ver
+libtool: link:  cat .libs/libzookeeper_st.exp | sed -e "s/\(.*\)/\1;/" >> .libs/libzookeeper_st.ver
+libtool: link:  echo "local: *; };" >> .libs/libzookeeper_st.ver
+libtool: link:  gcc -shared  -fPIC -DPIC  -Wl,--whole-archive ./.libs/libzkst.a ./.libs/libhashtable.a -Wl,--no-whole-archive  -lm  -O2   -Wl,-soname -Wl,libzookeeper_st.so.2 -Wl,-version-script -Wl,.libs/libzookeeper_st.ver -o .libs/libzookeeper_st.so.2.0.0
+libtool: link: (cd ".libs" && rm -f "libzookeeper_st.so.2" && ln -s "libzookeeper_st.so.2.0.0" "libzookeeper_st.so.2")
+libtool: link: (cd ".libs" && rm -f "libzookeeper_st.so" && ln -s "libzookeeper_st.so.2.0.0" "libzookeeper_st.so")
+libtool: link: (cd .libs/libzookeeper_st.lax/libzkst.a && ar x "/data/home/user00/workspace/poppy/thirdparty/zookeeper-3.4.6/src/c/./.libs/libzkst.a")
+libtool: link: (cd .libs/libzookeeper_st.lax/libhashtable.a && ar x "/data/home/user00/workspace/poppy/thirdparty/zookeeper-3.4.6/src/c/./.libs/libhashtable.a")
+libtool: link: ar cru .libs/libzookeeper_st.a   .libs/libzookeeper_st.lax/libzkst.a/recordio.o .libs/libzookeeper_st.lax/libzkst.a/st_adaptor.o .libs/libzookeeper_st.lax/libzkst.a/zk_hashtable.o .libs/libzookeeper_st.lax/libzkst.a/zk_log.o .libs/libzookeeper_st.lax/libzkst.a/zookeeper.jute.o .libs/libzookeeper_st.lax/libzkst.a/zookeeper.o  .libs/libzookeeper_st.lax/libhashtable.a/hashtable.o .libs/libzookeeper_st.lax/libhashtable.a/hashtable_itr.o 
+libtool: link: ranlib .libs/libzookeeper_st.a
+libtool: link: rm -fr .libs/libzookeeper_st.lax
+libtool: link: ( cd ".libs" && rm -f "libzookeeper_st.la" && ln -s "../libzookeeper_st.la" "libzookeeper_st.la" )
+/bin/sh ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I.  -I./include -I./tests -I./generated  -DTHREADED -g -O2 -D_GNU_SOURCE -MT libzkmt_la-zookeeper.lo -MD -MP -MF .deps/libzkmt_la-zookeeper.Tpo -c -o libzkmt_la-zookeeper.lo `test -f 'src/zookeeper.c' || echo './'`src/zookeeper.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./include -I./tests -I./generated -DTHREADED -g -O2 -D_GNU_SOURCE -MT libzkmt_la-zookeeper.lo -MD -MP -MF .deps/libzkmt_la-zookeeper.Tpo -c src/zookeeper.c  -fPIC -DPIC -o .libs/libzkmt_la-zookeeper.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./include -I./tests -I./generated -DTHREADED -g -O2 -D_GNU_SOURCE -MT libzkmt_la-zookeeper.lo -MD -MP -MF .deps/libzkmt_la-zookeeper.Tpo -c src/zookeeper.c -o libzkmt_la-zookeeper.o >/dev/null 2>&1
+mv -f .deps/libzkmt_la-zookeeper.Tpo .deps/libzkmt_la-zookeeper.Plo
+/bin/sh ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I.  -I./include -I./tests -I./generated  -DTHREADED -g -O2 -D_GNU_SOURCE -MT libzkmt_la-recordio.lo -MD -MP -MF .deps/libzkmt_la-recordio.Tpo -c -o libzkmt_la-recordio.lo `test -f 'src/recordio.c' || echo './'`src/recordio.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./include -I./tests -I./generated -DTHREADED -g -O2 -D_GNU_SOURCE -MT libzkmt_la-recordio.lo -MD -MP -MF .deps/libzkmt_la-recordio.Tpo -c src/recordio.c  -fPIC -DPIC -o .libs/libzkmt_la-recordio.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./include -I./tests -I./generated -DTHREADED -g -O2 -D_GNU_SOURCE -MT libzkmt_la-recordio.lo -MD -MP -MF .deps/libzkmt_la-recordio.Tpo -c src/recordio.c -o libzkmt_la-recordio.o >/dev/null 2>&1
+mv -f .deps/libzkmt_la-recordio.Tpo .deps/libzkmt_la-recordio.Plo
+/bin/sh ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I.  -I./include -I./tests -I./generated  -DTHREADED -g -O2 -D_GNU_SOURCE -MT libzkmt_la-zookeeper.jute.lo -MD -MP -MF .deps/libzkmt_la-zookeeper.jute.Tpo -c -o libzkmt_la-zookeeper.jute.lo `test -f 'generated/zookeeper.jute.c' || echo './'`generated/zookeeper.jute.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./include -I./tests -I./generated -DTHREADED -g -O2 -D_GNU_SOURCE -MT libzkmt_la-zookeeper.jute.lo -MD -MP -MF .deps/libzkmt_la-zookeeper.jute.Tpo -c generated/zookeeper.jute.c  -fPIC -DPIC -o .libs/libzkmt_la-zookeeper.jute.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./include -I./tests -I./generated -DTHREADED -g -O2 -D_GNU_SOURCE -MT libzkmt_la-zookeeper.jute.lo -MD -MP -MF .deps/libzkmt_la-zookeeper.jute.Tpo -c generated/zookeeper.jute.c -o libzkmt_la-zookeeper.jute.o >/dev/null 2>&1
+mv -f .deps/libzkmt_la-zookeeper.jute.Tpo .deps/libzkmt_la-zookeeper.jute.Plo
+/bin/sh ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I.  -I./include -I./tests -I./generated  -DTHREADED -g -O2 -D_GNU_SOURCE -MT libzkmt_la-zk_log.lo -MD -MP -MF .deps/libzkmt_la-zk_log.Tpo -c -o libzkmt_la-zk_log.lo `test -f 'src/zk_log.c' || echo './'`src/zk_log.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./include -I./tests -I./generated -DTHREADED -g -O2 -D_GNU_SOURCE -MT libzkmt_la-zk_log.lo -MD -MP -MF .deps/libzkmt_la-zk_log.Tpo -c src/zk_log.c  -fPIC -DPIC -o .libs/libzkmt_la-zk_log.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./include -I./tests -I./generated -DTHREADED -g -O2 -D_GNU_SOURCE -MT libzkmt_la-zk_log.lo -MD -MP -MF .deps/libzkmt_la-zk_log.Tpo -c src/zk_log.c -o libzkmt_la-zk_log.o >/dev/null 2>&1
+mv -f .deps/libzkmt_la-zk_log.Tpo .deps/libzkmt_la-zk_log.Plo
+/bin/sh ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I.  -I./include -I./tests -I./generated  -DTHREADED -g -O2 -D_GNU_SOURCE -MT libzkmt_la-zk_hashtable.lo -MD -MP -MF .deps/libzkmt_la-zk_hashtable.Tpo -c -o libzkmt_la-zk_hashtable.lo `test -f 'src/zk_hashtable.c' || echo './'`src/zk_hashtable.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./include -I./tests -I./generated -DTHREADED -g -O2 -D_GNU_SOURCE -MT libzkmt_la-zk_hashtable.lo -MD -MP -MF .deps/libzkmt_la-zk_hashtable.Tpo -c src/zk_hashtable.c  -fPIC -DPIC -o .libs/libzkmt_la-zk_hashtable.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./include -I./tests -I./generated -DTHREADED -g -O2 -D_GNU_SOURCE -MT libzkmt_la-zk_hashtable.lo -MD -MP -MF .deps/libzkmt_la-zk_hashtable.Tpo -c src/zk_hashtable.c -o libzkmt_la-zk_hashtable.o >/dev/null 2>&1
+mv -f .deps/libzkmt_la-zk_hashtable.Tpo .deps/libzkmt_la-zk_hashtable.Plo
+/bin/sh ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I.  -I./include -I./tests -I./generated  -DTHREADED -g -O2 -D_GNU_SOURCE -MT libzkmt_la-mt_adaptor.lo -MD -MP -MF .deps/libzkmt_la-mt_adaptor.Tpo -c -o libzkmt_la-mt_adaptor.lo `test -f 'src/mt_adaptor.c' || echo './'`src/mt_adaptor.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./include -I./tests -I./generated -DTHREADED -g -O2 -D_GNU_SOURCE -MT libzkmt_la-mt_adaptor.lo -MD -MP -MF .deps/libzkmt_la-mt_adaptor.Tpo -c src/mt_adaptor.c  -fPIC -DPIC -o .libs/libzkmt_la-mt_adaptor.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I./include -I./tests -I./generated -DTHREADED -g -O2 -D_GNU_SOURCE -MT libzkmt_la-mt_adaptor.lo -MD -MP -MF .deps/libzkmt_la-mt_adaptor.Tpo -c src/mt_adaptor.c -o libzkmt_la-mt_adaptor.o >/dev/null 2>&1
+mv -f .deps/libzkmt_la-mt_adaptor.Tpo .deps/libzkmt_la-mt_adaptor.Plo
+/bin/sh ./libtool --tag=CC   --mode=link gcc -DTHREADED -g -O2 -D_GNU_SOURCE   -o libzkmt.la  libzkmt_la-zookeeper.lo libzkmt_la-recordio.lo libzkmt_la-zookeeper.jute.lo libzkmt_la-zk_log.lo libzkmt_la-zk_hashtable.lo libzkmt_la-mt_adaptor.lo -lm 
+libtool: link: ar cru .libs/libzkmt.a .libs/libzkmt_la-zookeeper.o .libs/libzkmt_la-recordio.o .libs/libzkmt_la-zookeeper.jute.o .libs/libzkmt_la-zk_log.o .libs/libzkmt_la-zk_hashtable.o .libs/libzkmt_la-mt_adaptor.o 
+libtool: link: ranlib .libs/libzkmt.a
+libtool: link: ( cd ".libs" && rm -f "libzkmt.la" && ln -s "../libzkmt.la" "libzkmt.la" )
+/bin/sh ./libtool --tag=CC   --mode=link gcc -Wall -Werror  -g -O2 -D_GNU_SOURCE -no-undefined -version-info 2 -export-symbols-regex '(zoo_|zookeeper_|zhandle|Z|format_log_message|log_message|logLevel|deallocate_|zerror|is_unrecoverable)'  -o libzookeeper_mt.la -rpath /usr/local/lib  libzkmt.la libhashtable.la -lpthread 
+libtool: link: /usr/bin/nm -B   ./.libs/libzkmt.a ./.libs/libhashtable.a | sed -n -e 's/^.*[	 ]\([ABCDGIRSTW][ABCDGIRSTW]*\)[	 ][	 ]*\([_A-Za-z][_A-Za-z0-9]*\)$/\1 \2 \2/p' | sed '/ __gnu_lto/d' | /bin/sed 's/.* //' | sort | uniq > .libs/libzookeeper_mt.exp
+libtool: link: /bin/grep -E -e "(zoo_|zookeeper_|zhandle|Z|format_log_message|log_message|logLevel|deallocate_|zerror|is_unrecoverable)" ".libs/libzookeeper_mt.exp" > ".libs/libzookeeper_mt.expT"
+libtool: link: mv -f ".libs/libzookeeper_mt.expT" ".libs/libzookeeper_mt.exp"
+libtool: link: echo "{ global:" > .libs/libzookeeper_mt.ver
+libtool: link:  cat .libs/libzookeeper_mt.exp | sed -e "s/\(.*\)/\1;/" >> .libs/libzookeeper_mt.ver
+libtool: link:  echo "local: *; };" >> .libs/libzookeeper_mt.ver
+libtool: link:  gcc -shared  -fPIC -DPIC  -Wl,--whole-archive ./.libs/libzkmt.a ./.libs/libhashtable.a -Wl,--no-whole-archive  -lm -lpthread  -O2   -Wl,-soname -Wl,libzookeeper_mt.so.2 -Wl,-version-script -Wl,.libs/libzookeeper_mt.ver -o .libs/libzookeeper_mt.so.2.0.0
+libtool: link: (cd ".libs" && rm -f "libzookeeper_mt.so.2" && ln -s "libzookeeper_mt.so.2.0.0" "libzookeeper_mt.so.2")
+libtool: link: (cd ".libs" && rm -f "libzookeeper_mt.so" && ln -s "libzookeeper_mt.so.2.0.0" "libzookeeper_mt.so")
+libtool: link: (cd .libs/libzookeeper_mt.lax/libzkmt.a && ar x "/data/home/user00/workspace/poppy/thirdparty/zookeeper-3.4.6/src/c/./.libs/libzkmt.a")
+libtool: link: (cd .libs/libzookeeper_mt.lax/libhashtable.a && ar x "/data/home/user00/workspace/poppy/thirdparty/zookeeper-3.4.6/src/c/./.libs/libhashtable.a")
+libtool: link: ar cru .libs/libzookeeper_mt.a   .libs/libzookeeper_mt.lax/libzkmt.a/libzkmt_la-mt_adaptor.o .libs/libzookeeper_mt.lax/libzkmt.a/libzkmt_la-recordio.o .libs/libzookeeper_mt.lax/libzkmt.a/libzkmt_la-zk_hashtable.o .libs/libzookeeper_mt.lax/libzkmt.a/libzkmt_la-zk_log.o .libs/libzookeeper_mt.lax/libzkmt.a/libzkmt_la-zookeeper.jute.o .libs/libzookeeper_mt.lax/libzkmt.a/libzkmt_la-zookeeper.o  .libs/libzookeeper_mt.lax/libhashtable.a/hashtable.o .libs/libzookeeper_mt.lax/libhashtable.a/hashtable_itr.o 
+libtool: link: ranlib .libs/libzookeeper_mt.a
+libtool: link: rm -fr .libs/libzookeeper_mt.lax
+libtool: link: ( cd ".libs" && rm -f "libzookeeper_mt.la" && ln -s "../libzookeeper_mt.la" "libzookeeper_mt.la" )
+gcc -DHAVE_CONFIG_H -I.  -I./include -I./tests -I./generated  -Wall -Werror  -g -O2 -D_GNU_SOURCE -MT cli.o -MD -MP -MF .deps/cli.Tpo -c -o cli.o `test -f 'src/cli.c' || echo './'`src/cli.c
+mv -f .deps/cli.Tpo .deps/cli.Po
+/bin/sh ./libtool --tag=CC   --mode=link gcc -Wall -Werror  -g -O2 -D_GNU_SOURCE   -o cli_st cli.o libzookeeper_st.la 
+libtool: link: gcc -Wall -Werror -g -O2 -D_GNU_SOURCE -o .libs/cli_st cli.o  ./.libs/libzookeeper_st.so -Wl,-rpath -Wl,/usr/local/lib
+gcc -DHAVE_CONFIG_H -I.  -I./include -I./tests -I./generated  -DTHREADED -g -O2 -D_GNU_SOURCE -MT cli_mt-cli.o -MD -MP -MF .deps/cli_mt-cli.Tpo -c -o cli_mt-cli.o `test -f 'src/cli.c' || echo './'`src/cli.c
+mv -f .deps/cli_mt-cli.Tpo .deps/cli_mt-cli.Po
+/bin/sh ./libtool --tag=CC   --mode=link gcc -DTHREADED -g -O2 -D_GNU_SOURCE   -o cli_mt cli_mt-cli.o libzookeeper_mt.la 
+libtool: link: gcc -DTHREADED -g -O2 -D_GNU_SOURCE -o .libs/cli_mt cli_mt-cli.o  ./.libs/libzookeeper_mt.so -Wl,-rpath -Wl,/usr/local/lib
+gcc -DHAVE_CONFIG_H -I.  -I./include -I./tests -I./generated  -DTHREADED -g -O2 -D_GNU_SOURCE -MT load_gen-load_gen.o -MD -MP -MF .deps/load_gen-load_gen.Tpo -c -o load_gen-load_gen.o `test -f 'src/load_gen.c' || echo './'`src/load_gen.c
+mv -f .deps/load_gen-load_gen.Tpo .deps/load_gen-load_gen.Po
+/bin/sh ./libtool --tag=CC   --mode=link gcc -DTHREADED -g -O2 -D_GNU_SOURCE   -o load_gen load_gen-load_gen.o libzookeeper_mt.la 
+libtool: link: gcc -DTHREADED -g -O2 -D_GNU_SOURCE -o .libs/load_gen load_gen-load_gen.o  ./.libs/libzookeeper_mt.so -Wl,-rpath -Wl,/usr/local/lib
+make[1]: Leaving directory `/data/home/user00/workspace/thirdparty/zookeeper-3.4.6/src/c'
